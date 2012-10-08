@@ -65,6 +65,7 @@ module RailsAdminImport
           end
         
           text = File.read(params[:file].tempfile)
+          text = text.chars.select{|i| i.valid_encoding?}.join
           clean = text.gsub(/\n$/, '')
           file_check = CSV.new(clean)
 
